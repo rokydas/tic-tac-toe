@@ -1,3 +1,11 @@
+.full-page {
+    background-image: url('../../images/bg.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
 .active {
     background-color: green;
     color: white;
@@ -6,4 +14,14 @@
 .inactive {
     background-color: gray;
     color: white;
+}
+
+.playground-header {
+    max-width: 450px;
+}
+
+@media all and (max-width: 600px) {
+    .playground-header {
+        width: 350px;
+    }
 }

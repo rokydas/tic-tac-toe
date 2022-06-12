@@ -13,17 +13,17 @@ const Home = () => {
     const [counter, setCounter] = useState(0);
 
     const checkMate = () => {
-        checkMatePartition(0, 1, 2);
-        checkMatePartition(3, 4, 5);
-        checkMatePartition(6, 7, 8);
-        checkMatePartition(0, 3, 6);
-        checkMatePartition(1, 4, 7);
-        checkMatePartition(2, 5, 8);
-        checkMatePartition(0, 4, 8);
-        checkMatePartition(2, 4, 6);
+        checkMatePosition(0, 1, 2);
+        checkMatePosition(3, 4, 5);
+        checkMatePosition(6, 7, 8);
+        checkMatePosition(0, 3, 6);
+        checkMatePosition(1, 4, 7);
+        checkMatePosition(2, 5, 8);
+        checkMatePosition(0, 4, 8);
+        checkMatePosition(2, 4, 6);
     }
 
-    const checkMatePartition = (a, b, c) => {
+    const checkMatePosition = (a, b, c) => {
         if (playData[a].value != 'not-given') {
             if (playData[a].value == playData[b].value && playData[b].value == playData[c].value) {
                 setWonPlayer(isPlayerOne ? 1 : 2);
@@ -43,37 +43,30 @@ const Home = () => {
         }
     }
 
-    console.log(playData);
-
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-3 border">
-                    <img className="img-fluid" src={player} alt="" />
-                    <h1 className={`p-5 ${isPlayerOne ? 'active' : 'inactive'}`}>
-                        Player 1 (Circle)
-                    </h1>
-                    {isPlayerOne && <h3>Now your turn</h3>}
-                </div>
-                <div className="col-md-6">
-                    <h1 className="mb-5 mt-2">Tic Tac Toe</h1>
-                    <div className="d-flex justify-content-center">
-                        <div className="w-50">
-                            <div className="row">
-                                {
-                                    playData.map(d => <Playground d={d} getOption={getOption} key={d.position} />)
-                                }
-                            </div>
-                            {isFinished && <h1 className="text-success m-5">Player {wonPlayer} won the match</h1>}
-                        </div>
+        <div className="full-page" >
+            <h1 className="p-3">Tic Tac Toe</h1>
+            <div className="d-flex justify-content-center mb-3">
+                <div className="playground-header">
+                    <div className="row">
+                        {
+                            playData.map(d => <Playground d={d} getOption={getOption} key={d.position} />)
+                        }
                     </div>
                 </div>
-                <div className="col-md-3 border">
+            </div>
+            {isFinished && <h5 className="text-success">Player {wonPlayer} won the match</h5>}
+            <div className="d-flex justify-content-center mt-3">
+                <div style={{ maxWidth: "150px" }} >
                     <img className="img-fluid" src={player} alt="" />
-                    <h1 className={`p-5 ${!isPlayerOne ? 'active' : 'inactive'}`}>
-                        Player 2 (Cross)
-                    </h1>
-                    {!isPlayerOne && <h3>Now your turn</h3>}
+                    <h3 className={`${isPlayerOne ? 'active' : 'inactive'}`}>Player 1 (Circle)</h3>
+                    {isPlayerOne && <h5>Now your turn</h5>}
+                </div>
+                <div style={{ width: "50px" }}></div>
+                <div style={{ maxWidth: "150px" }} >
+                    <img className="img-fluid" src={player} alt="" />
+                    <h3 className={`${!isPlayerOne ? 'active' : 'inactive'}`}>Player 2 (Cross)</h3>
+                    {!isPlayerOne && <h5>Now your turn</h5>}
                 </div>
             </div>
         </div>
@@ -81,3 +74,19 @@ const Home = () => {
 };
 
 export default Home;
+
+// <div className="col-md-2 border">
+//     <img className="img-fluid" src={player} alt="" />
+//     <h1 className={`p-5 ${isPlayerOne ? 'active' : 'inactive'}`}>
+//         Player 1 (Circle)
+//     </h1>
+//     {isPlayerOne && <h3>Now your turn</h3>}
+// </div>
+
+// <div className="col-md-2 border">
+    // <img className="img-fluid" src={player} alt="" />
+    // <h1 className={`p-5 ${!isPlayerOne ? 'active' : 'inactive'}`}>
+    //     Player 2 (Cross)
+    // </h1>
+    // {!isPlayerOne && <h3>Now your turn</h3>}
+// </div>
