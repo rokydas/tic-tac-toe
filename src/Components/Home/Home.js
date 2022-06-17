@@ -41,6 +41,10 @@ const Home = () => {
             setCounter(counter + 1);
             checkMate();
         }
+        console.log(counter)
+        if (counter + 1 == 9) {
+            setIsFinished(true)
+        }
     }
 
     return (
@@ -55,7 +59,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {isFinished && <h5 className="text-success">Player {wonPlayer} won the match</h5>}
+            {(isFinished && wonPlayer != 0) && <h5 className="text-success">Player {wonPlayer} won the match</h5>}
+            {(isFinished && wonPlayer == 0) && <h5 className="text-success">Match Drawn</h5>}
             <div className="d-flex justify-content-center mt-3">
                 <div style={{ maxWidth: "150px" }} >
                     <img className="img-fluid" src={player} alt="" />
@@ -74,19 +79,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// <div className="col-md-2 border">
-//     <img className="img-fluid" src={player} alt="" />
-//     <h1 className={`p-5 ${isPlayerOne ? 'active' : 'inactive'}`}>
-//         Player 1 (Circle)
-//     </h1>
-//     {isPlayerOne && <h3>Now your turn</h3>}
-// </div>
-
-// <div className="col-md-2 border">
-    // <img className="img-fluid" src={player} alt="" />
-    // <h1 className={`p-5 ${!isPlayerOne ? 'active' : 'inactive'}`}>
-    //     Player 2 (Cross)
-    // </h1>
-    // {!isPlayerOne && <h3>Now your turn</h3>}
-// </div>
